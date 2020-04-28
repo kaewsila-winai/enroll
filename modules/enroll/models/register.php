@@ -134,26 +134,28 @@ class Model extends \Kotchasan\Model
                     $dir = ROOT_PATH.DATA_FOLDER.'enroll/';
                     // อัปโหลดไฟล์
                     foreach ($request->getUploadedFiles() as $item => $file) {
-                        /* @var $file \Kotchasan\Http\UploadedFile */
-                        if ($file->hasUploadFile()) {
-                            if (!File::makeDirectory($dir)) {
-                                // ไดเรคทอรี่ไม่สามารถสร้างได้
-                                $ret['ret_'.$item] = sprintf(Language::get('Directory %s cannot be created or is read-only.'), DATA_FOLDER.'enroll/');
-                            } elseif ($item == 'thumbnail') {
-                                // อัปโหลด
-                                try {
-                                    $file->resizeImage(array('jpg', 'jpeg', 'png'), $dir, $save['id'].'.jpg', self::$cfg->enroll_w);
-                                } catch (\Exception $exc) {
-                                    // ไม่สามารถอัปโหลดได้
-                                    $ret['ret_'.$item] = Language::get($exc->getMessage());
+                        if ($item == 'thumbnail') {
+                            /* @var $file \Kotchasan\Http\UploadedFile */
+                            if ($file->hasUploadFile()) {
+                                if (!File::makeDirectory($dir)) {
+                                    // ไดเรคทอรี่ไม่สามารถสร้างได้
+                                    $ret['ret_'.$item] = sprintf(Language::get('Directory %s cannot be created or is read-only.'), DATA_FOLDER.'enroll/');
+                                } elseif ($item == 'thumbnail') {
+                                    // อัปโหลด
+                                    try {
+                                        $file->resizeImage(array('jpg', 'jpeg', 'png'), $dir, $save['id'].'.jpg', self::$cfg->enroll_w);
+                                    } catch (\Exception $exc) {
+                                        // ไม่สามารถอัปโหลดได้
+                                        $ret['ret_'.$item] = Language::get($exc->getMessage());
+                                    }
                                 }
+                            } elseif ($file->hasError()) {
+                                // ข้อผิดพลาดการอัปโหลด
+                                $ret['ret_'.$item] = Language::get($file->getErrorMessage());
+                            } elseif ($user->id == 0) {
+                                // ใหม่ ต้องอัปโหลดไฟล์
+                                $ret['ret_'.$item] = Language::get('Please upload pictures of students');
                             }
-                        } elseif ($file->hasError()) {
-                            // ข้อผิดพลาดการอัปโหลด
-                            $ret['ret_'.$item] = Language::get($file->getErrorMessage());
-                        } elseif ($user->id == 0) {
-                            // ใหม่ ต้องอัปโหลดไฟล์
-                            $ret['ret_'.$item] = Language::get('Please upload pictures of students');
                         }
                     }
                 }
