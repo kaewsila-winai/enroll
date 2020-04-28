@@ -1,0 +1,112 @@
+<div class=booking_template>
+  มีรายการจองห้องประชุมจาก %NAME% มีรายละเอียดดังนี้
+  <br><br><b>{LNG_Booking information}</b>
+  <table>
+    <tbody>
+      <tr>
+        <th>{LNG_Transaction No.}</th>
+        <td>%ORDER_NO%</td>
+      </tr>
+      <tr>
+        <th>{LNG_Topic}</th>
+        <td>%TOPIC%</td>
+      </tr>
+      <tr>
+        <th>{LNG_Begin time}</th>
+        <td>%BEGIN%</td>
+      </tr>
+      <tr>
+        <th>{LNG_End time}</th>
+        <td>%END%</td>
+      </tr>
+      <tr>
+        <th>{LNG_Status}</th>
+        <td>%STATUS%</td>
+      </tr>
+      <tr>
+        <th>{LNG_Reason}</th>
+        <td>%REASON%</td>
+      </tr>
+    </tbody>
+  </table>
+  <br><br><b>{LNG_Contact information}</b>
+  <table>
+    <tbody>
+      <tr>
+        <th>{LNG_Name}</th>
+        <td>%NAME%</td>
+      </tr>
+      <tr>
+        <th>{LNG_Phone}</th>
+        <td>%PHONE%</td>
+      </tr>
+      <tr>
+        <th>{LNG_Address}</th>
+        <td>%ADDRESS% %PROVINCE% %ZIPCODE%</td>
+      </tr>
+      <tr>
+        <th>{LNG_Email}</th>
+        <td>%USERNAME%</td>
+      </tr>
+    </tbody>
+  </table>
+  <br><br><b>{LNG_Details of} {LNG_Booking}</b>
+  <table>
+    <thead>
+      <tr>
+        <th class=center>#</th>
+        <th>{LNG_Room name}</th>
+        <th>{LNG_Detail}</th>
+        <th class=center>{LNG_Seats}</th>
+        <th class=center>{LNG_Rental}/{LNG_hr.}</th>
+      </tr>
+    </thead>
+    <tbody>%DETAIL%</tbody>
+  </table>
+  <br><br>
+  <table>
+    <tbody>
+      <tr>
+        <th>{LNG_Total time}</th>
+        <td>%TOTAL% {LNG_minute}</td>
+      </tr>
+      <tr>
+        <th>{LNG_Cost}</th>
+        <td>%AMOUNT% %CURRENCY_UNIT%</td>
+      </tr>
+      <tr>
+        <th>{LNG_Mulct}</th>
+        <td>%MULCT% %CURRENCY_UNIT%</td>
+      </tr>
+      <tr>
+        <th>{LNG_Credit balance}</th>
+        <td>%CREDIT% %CURRENCY_UNIT%</td>
+      </tr>
+    </tbody>
+  </table>
+  <br><br><b>ท่านสามารถยกเลิกการจองได้ก่อนถึงเวลาเริ่มต้น %ADVANCE% นาที หากเกินกว่านี้จะต้องเสียค่าปรับ %MULCTPERCENT%% ของค่าใช้จ่ายในการจอง</b>
+</div>
+<style>
+  .booking_template table {
+    border: 1px solid #bbb;
+    border-collapse: collapse;
+  }
+  
+  .booking_template th {
+    text-align: left;
+    background-color: #f5f5f5;
+    font-weight: normal;
+    border: 1px solid #bbb;
+    padding: 0 10px;
+  }
+  
+  .booking_template td {
+    text-align: left;
+    border: 1px solid #bbb;
+    padding: 0 10px;
+  }
+  
+  .booking_template .center {
+    text-align: center;
+  }
+</style>
